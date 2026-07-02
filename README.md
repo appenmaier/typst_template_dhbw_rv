@@ -150,7 +150,7 @@ Zitieren im Text:
 
 ### KI-Werkzeuge – `user/ai-tools.typ`
 
-Eingesetzte KI-Tools eintragen. Sie erscheinen automatisch im Anhang (KI-Tabelle) und in der KI-Erklärung am Dokumentende.
+Eingesetzte KI-Tools eintragen. Sie erscheinen automatisch im Anhang (KI-Tabelle).
 
 ```typst
 #let ai-tools = (
