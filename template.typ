@@ -5,7 +5,7 @@
 #let labels = if lang == "EN" { labels-EN } else { labels-DE }
 
 // ---- Template version ---- //
-#let template-version = "1.0.1"
+#let template-version = "1.0.2"
 
 // ---- Page layout ---- //
 #let margin = (left: 2.5cm, right: 2.5cm, top: 2.5cm, bottom: 2cm)
