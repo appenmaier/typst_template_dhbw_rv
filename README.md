@@ -92,15 +92,21 @@ typst watch  template.typ paper.pdf         # bei jeder Speicherung neu kompilie
 // Sperrvermerk – nur bei vertraulichen Themen aktivieren, sonst false lassen
 #let show-confidentiality-notice = false
 
+// Abstract-Seite ein-/ausblenden (Inhalt in user/abstract.typ)
+#let show-abstract = true
+
 // Unternehmensbetreuer auf dem Titelblatt ein-/ausblenden
 #let show-company-supervisor = true
+
+// Wissenschaftlichen Betreuer (Gutachter DHBW) auf dem Titelblatt ein-/ausblenden
+#let show-supervisor = true
 ```
 
 Einzelne Beschriftungen lassen sich direkt in `i18n/DE.typ` bzw. `i18n/EN.typ` anpassen, ohne Layout-Dateien anzufassen.
 
-Die Vorlagenversion ist in `main.typ` als `template-version` hinterlegt und kann bei Bedarf im Dokument angezeigt werden.
+Die Vorlagenversion ist in `template.typ` als `template-version` hinterlegt und kann bei Bedarf im Dokument angezeigt werden.
 
-Die Schriftart ist in `main.typ` als `font` hinterlegt (Standard: `"Arial"`). Zum Wechseln diesen Wert anpassen — die Schrift muss auf dem System installiert sein.
+Die Schriftart ist in `template.typ` als `font` hinterlegt (Standard: `"Arial"`). Zum Wechseln diesen Wert anpassen — die Schrift muss auf dem System installiert sein.
 
 ---
 
@@ -124,6 +130,18 @@ chapters/conclusion.typ       Fazit
 > **Hinweis:** Das Include `typst-examples.typ` in `chapters/main.typ` vor der Abgabe auskommentieren oder entfernen.
 
 Neue Kapitel als eigene Dateien anlegen und in `chapters/main.typ` per `#include` einbinden.
+
+### Abstract – `user/abstract.typ`
+
+Den Abstract-Text direkt in `abstract-body` eintragen:
+
+```typst
+#let abstract-body = [
+  Diese Arbeit untersucht …
+]
+```
+
+Die Seite erscheint nur, wenn `show-abstract = true` in `user/config.typ` gesetzt ist.
 
 ### Abkürzungsverzeichnis – `user/abbreviations.typ`
 
@@ -171,6 +189,7 @@ Die folgenden Seiten werden vollständig automatisch erzeugt – kein manueller 
 |---|---|
 | Titelblatt | `user/config.typ` |
 | Sperrvermerk | `user/config.typ` → `show-confidentiality-notice` |
+| Abstract | `user/abstract.typ` → `show-abstract` |
 | Inhaltsverzeichnis | Überschriften im Dokument |
 | Abkürzungsverzeichnis | `user/abbreviations.typ` |
 | Abbildungs- / Tabellen- / Listingverzeichnis | `#figure()`-Einträge |
@@ -190,5 +209,6 @@ Die folgenden Seiten werden vollständig automatisch erzeugt – kein manueller 
 ## Vor der Abgabe
 
 - Alle Platzhalter in `user/config.typ` durch echte Daten ersetzen.
+- Abstract in `user/abstract.typ` verfassen oder `show-abstract = false` setzen.
 - `user/abbreviations.typ`, `user/sources.bib` und `user/ai-tools.typ` vollständig befüllen.
 - Sperrvermerk auf `true` setzen, falls vertrauliches Thema.
