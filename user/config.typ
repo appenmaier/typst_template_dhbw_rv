@@ -20,8 +20,14 @@
 // ---- Show confidentiality notice ---- //
 #let show-confidentiality-notice = false
 
+// ---- Show abstract page ---- //
+#let show-abstract = true
+
 // ---- Show company supervisor on title page ---- //
 #let show-company-supervisor = true
+
+// ---- Show academic supervisor on title page ---- //
+#let show-supervisor = true
 
 // ---- Document metadata ---- //
 #let config = (

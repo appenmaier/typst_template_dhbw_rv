@@ -1,11 +1,11 @@
 // Imports
-#import "user/config.typ": config, show-confidentiality-notice, show-company-supervisor, lang
+#import "user/config.typ": config, show-confidentiality-notice, show-company-supervisor, show-supervisor, show-abstract, lang
 #import "i18n/DE.typ": labels as labels-DE
 #import "i18n/EN.typ": labels as labels-EN
 #let labels = if lang == "EN" { labels-EN } else { labels-DE }
 
 // ---- Template version ---- //
-#let template-version = "1.0.2"
+#let template-version = "1.1.0"
 
 // ---- Page layout ---- //
 #let margin = (left: 2.5cm, right: 2.5cm, top: 2.5cm, bottom: 2cm)
@@ -16,6 +16,7 @@
 // Page components
 #import "pages/title-page.typ": title-page
 #import "pages/confidentiality-notice.typ": confidentiality-notice
+#import "pages/abstract.typ": abstract-page
 #import "pages/table-of-contents.typ": table-of-contents
 #import "pages/list-of-abbreviations.typ": list-of-abbreviations
 #import "pages/common.typ": outline-page
@@ -96,12 +97,17 @@
     let page-num = counter(page).at(loc).first()
     let num-style = loc.page-numbering()
     let page-label = if num-style != none { numbering(num-style, page-num) } else { str(page-num) }
-    link(loc, it.indented(it.prefix(), it.body() + box(width: 1fr, it.fill) + page-label))
+    let entry = it.indented(it.prefix(), it.body() + box(width: 1fr, it.fill) + page-label)
+    if it.level == 1 {
+      block(above: 1.2em, below: 0.3em, link(loc, strong(entry)))
+    } else {
+      link(loc, entry)
+    }
   }
 }
 
 // Title page
-#title-page(labels: labels, margin: margin, logo-path: logo-path, show-company-supervisor: show-company-supervisor, ..config)
+#title-page(labels: labels, margin: margin, logo-path: logo-path, show-company-supervisor: show-company-supervisor, show-supervisor: show-supervisor, ..config)
 
 // Roman page numbers
 #set page(
@@ -119,6 +125,12 @@
 }
 // Advance roman counter past title (I) and optional confidentiality notice (II)
 #counter(page).update(if show-confidentiality-notice { 3 } else { 2 })
+
+// Optional abstract
+#if show-abstract {
+  import "user/abstract.typ": abstract-body
+  abstract-page(labels: labels, body: abstract-body)
+}
 
 // Table of contents
 #table-of-contents(labels: labels)

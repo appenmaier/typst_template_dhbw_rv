@@ -32,6 +32,7 @@
   lecture: "",
   project-number: "1",
   show-company-supervisor: true,
+  show-supervisor: true,
   logo-path: "",
   margin: (:),
 ) = {
@@ -100,8 +101,10 @@
     if show-company-supervisor {
       rows = rows + (([#labels.meta-company-supervisor#h(1em)], [#company-supervisor]),)
     }
+    if show-supervisor {
+      rows = rows + (([#labels.meta-supervisor#h(1em)], [#supervisor]),)
+    }
     rows = rows + (
-      ([#labels.meta-supervisor#h(1em)],[#supervisor]),
       ([#labels.meta-date#h(1em)],      [#submission-date]),
     )
     table(

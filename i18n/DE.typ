@@ -7,6 +7,8 @@
 #let labels = (
   // ---- Section headings ---- //
   toc:           "Inhaltsverzeichnis",
+  abstract:      "Abstract",
+  abstract-title: "Abstract",
   abbreviations: "Abkürzungsverzeichnis",
   figures:       "Abbildungsverzeichnis",
   tables:        "Tabellenverzeichnis",
