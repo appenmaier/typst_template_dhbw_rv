@@ -32,7 +32,7 @@
 )
 
 // Base font
-#set text(font: font, size: 11pt, lang: "de")
+#set text(font: font, size: 11pt, lang: lang)
 
 // Line spacing 1.5, justified text
 #set par(leading: 1em, spacing: 1.5em, justify: true)
